@@ -1,11 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-
-// import { ChevronLeft, Info } from "lucide-react";
-// import { assets, messagesDummyData } from "../assets/assets";
 import { formatMessageTime } from "../lib/utils";
-import assets from "../assets/assets";
-import { ChatContext } from "../../context/ChatContext";
-import { AuthContext } from "../../context/AuthContext";
+import assets from "../assets/assets.js";
+import { ChatContext } from "../../context/ChatContext.jsx";
+import { AuthContext } from "../../context/AuthContext.jsx";
 import toast from "react-hot-toast";
 
 const ChatContainer = () => {
@@ -41,11 +38,11 @@ const ChatContainer = () => {
     reader.readAsDataURL(file);
   };
 
-  useEffect(() => {
-    if (selectedUser) {
-      getMessages(selectedUser._id);
-    }
-  }, [selectedUser]);
+  // useEffect(() => {
+  //   if (selectedUser) {
+  //     getMessages(selectedUser._id);
+  //   }
+  // }, [selectedUser]);
 
   useEffect(() => {
     if (scrollEnd.current && messages) {
@@ -156,7 +153,7 @@ const ChatContainer = () => {
     </div>
   ) : (
     <div className="flex flex-col items-center justify-center gap-2 text-gray-500 bg-white/10 max-md:hidden">
-      <img src={assets.logo_icon} alt="logo" className="max-w-16" />
+      <img src={assets.logo} alt="logo" className="max-w-16" />
       <p className="text-lg font-medium text-white">Chat anytime, anywhere</p>
     </div>
   );

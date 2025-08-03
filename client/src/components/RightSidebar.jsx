@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import assets, { imagesDummyData } from "../assets/assets";
-import { ChatContext } from "../../context/ChatContext";
-import { AuthContext } from "../../context/AuthContext";
+import assets from "../assets/assets.js";
+import { ChatContext } from "../../context/ChatContext.jsx";
+import { AuthContext } from "../../context/AuthContext.jsx";
 
 const RightSidebar = () => {
   const { selectedUser, messages } = useContext(ChatContext);
@@ -10,7 +10,11 @@ const RightSidebar = () => {
 
   // Get all the images from the messages and set them to state
   useEffect(() => {
-    setMsgImages(messages.filter((msg) => msg.image).map((msg) => msg.image));
+    if (Array.isArray(messages)) {
+      setMsgImages(messages.filter((msg) => msg.image).map((msg) => msg.image));
+    } else {
+      setMsgImages([]);
+    }
   }, [messages]);
 
   return (

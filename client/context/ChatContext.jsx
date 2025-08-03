@@ -7,10 +7,23 @@ export const ChatContext = createContext();
 export const ChatProvider = ({ children }) => {
   const [messages, setMessages] = useState([]);
   const [users, setUsers] = useState([]);
-  const [selectedUser, setSelectedUser] = useState(null);
+
+  // const [selectedUser, setSelectedUser] = useState(null);
+  const [selectedUser, setSelectedUser] = useState(() => {
+    const saved = localStorage.getItem("selectedUser");
+    return saved ? JSON.parse(saved) : null;
+  });
   const [unseenMessages, setUnseenMessages] = useState({});
 
   const { socket, axios } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (selectedUser) {
+      localStorage.setItem("selectedUser", JSON.stringify(selectedUser));
+    } else {
+      localStorage.removeItem("selectedUser");
+    }
+  }, [selectedUser]);
 
   // function to get all users for sidebar
   const getUsers = async () => {
@@ -46,7 +59,6 @@ export const ChatProvider = ({ children }) => {
       );
       if (data.success) {
         console.log(data);
-        // setMessages((prevMessages) => [...prevMessages, data.newMessage]);
         setMessages((prevMessages) => {
           console.log("Previous Messages:", prevMessages);
           return [
@@ -92,6 +104,13 @@ export const ChatProvider = ({ children }) => {
     subscribeToMessages();
     return () => unsubscribeFromMessages();
   }, [socket, selectedUser]);
+
+  // ✅ Fetch messages on app load if selectedUser exists and messages are empty
+  useEffect(() => {
+    if (selectedUser) {
+      getMessages(selectedUser._id);
+    }
+  }, []);
 
   const value = {
     messages,

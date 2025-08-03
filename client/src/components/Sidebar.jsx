@@ -1,13 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-// import { EllipsisVertical, Search } from "lucide-react";
-import assets from "../assets/assets";
-import { AuthContext } from "../../context/AuthContext";
-import { ChatContext } from "../../context/ChatContext";
-// import "boxicons/css/boxicons.min.css";
-
-// import { assets, userDummyData } from "../assets/assets.js";
+import assets from "../assets/assets.js";
+import { AuthContext } from "../../context/AuthContext.jsx";
+import { ChatContext } from "../../context/ChatContext.jsx";
 
 const Sidebar = () => {
   const {
@@ -44,13 +39,14 @@ const Sidebar = () => {
       <div className="pb-5">
         <div className="flex justify-between items-center">
           <img src={assets.logo} alt="logo" className="max-w-40" />
+          <h3 className="font-chatcom text-chatcom text-2xl">ChatCom</h3>
           <div className="relative py-2 group">
             <img
               src={assets.menu_icon}
               alt="Menu"
               className="max-h-5 cursor-pointer"
             />
-            <div className="absolute top-full right-0 z-20 w-32 p-5 rounded-md b-[#282142] border border-gray-600 text-gray-100 hidden group-hover:block">
+            <div className="absolute bg-hover top-full right-0 z-20 w-32 p-5 rounded-md b-[#282142] border border-gray-600 text-gray-100 hidden group-hover:block">
               <p
                 onClick={() => navigate("/profile")}
                 className="cursor-pointer text-sm"

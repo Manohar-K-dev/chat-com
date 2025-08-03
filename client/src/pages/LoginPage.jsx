@@ -31,7 +31,7 @@ const LoginPage = () => {
   return (
     <div className="min-h-screen bg-cover bg-center flex items-center justify-center gap-8 sm:justify-evenly max-sm:flex-col backdrop-blur-2xl">
       {/* ------- left ------- */}
-      <img src={assets.logo} alt="LOGO" className="w-[min(30vw, 250px)]" />
+      <img src={assets.logo} alt="LOGO" className="w-[80px]" />
 
       {/* ------- right ------- */}
       <form
@@ -92,7 +92,7 @@ const LoginPage = () => {
 
         <button
           type="submit"
-          className="py-3 bg-gradient-to-r from-purple-400 to-violet-600 text-white rounded-md cursor-pointer"
+          className="py-3 bg-chatcom text-white rounded-md cursor-pointer"
         >
           {currState === "Sign up" ? "Create Account" : "Login Now"}
         </button>
@@ -110,7 +110,7 @@ const LoginPage = () => {
                   setCurrState("Login");
                   setIsDataSubmitted(false);
                 }}
-                className="font-medium text-violet-500 cursor-pointer"
+                className="font-medium text-chatcom cursor-pointer"
               >
                 Login here
               </span>
@@ -122,7 +122,7 @@ const LoginPage = () => {
                 onClick={() => {
                   setCurrState("Sign up");
                 }}
-                className="font-medium text-violet-500 cursor-pointer"
+                className="font-medium text-chatcom cursor-pointer"
               >
                 Click here
               </span>
